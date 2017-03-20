@@ -171,7 +171,8 @@ public class WiFiExample {
 			SampleProvider usValue = usSensor.getMode("Distance");			// colorValue provides samples from this instance
 			float[] usData = new float[usValue.sampleSize()];				// colorData is the buffer in which data are returned
 
-			Localization lsl = new Localization(odometer,navigation, colorValue, colorData, colorData2, leftMotor,rightMotor, usValue, usSensor, usData);
+			Localization lsl = new Localization(odometer,navigation, colorValue, colorData, 
+					colorData2, leftMotor,rightMotor, usValue, usSensor, usData);
 			final TextLCD t = LocalEV3.get().getTextLCD();
 			t.clear();
 			OdometryDisplay odometryDisplay = new OdometryDisplay(odometer,t);
@@ -198,7 +199,7 @@ public class WiFiExample {
 				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
 				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
 
-				Forward forward = new Forward(fwdCorner, d1, w1, w2, bx, by, orientation);
+				Forward forward = new Forward(navigation, fwdCorner, d1, w1, w2, bx, by, orientation);
 				forward.startFWD();
 			}
 			if(defTeam == 3){//play defense:

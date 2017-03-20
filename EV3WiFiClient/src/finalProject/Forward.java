@@ -36,9 +36,7 @@ public class Forward {
 //	public static final EV3LargeRegulatedMotor launcherMotor = WiFiExample.launcherMotor;;
 	private static final Port usPort = LocalEV3.get().getPort("S1");
 
-	
-	public static Odometer odometer = WiFiExample.odometer;
-	public static Navigation navigation = WiFiExample.navigation;
+	public static Navigation nav;
 //	public static ballLauncher launch =  WiFiExample.launch;
 	
 	//Setup ultrasonic sensor
@@ -52,7 +50,7 @@ public class Forward {
 	float[] usData = new float[usValue.sampleSize()];				// colorData is the buffer in which data are returned
 	
 		
-	public Forward(int corner, int d1, int w1, int w2, int bx, int by, String omega) {
+	public Forward(Navigation navigation, int corner, int d1, int w1, int w2, int bx, int by, String omega) {
 		this.corner = corner;
 		this.fwdLinePosition = d1;
 		this.w1 = w1;
@@ -60,6 +58,7 @@ public class Forward {
 		this.disp_x = bx;
 		this.disp_y = by;
 		this.omega = omega;
+		this.nav = navigation;
 	}
 	
 	public void startFWD() {
@@ -69,7 +68,7 @@ public class Forward {
 		//step 2 = shoot ball 
 		
 		//travel to shooting zone
-		navigation.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-2-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
+		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-2-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
 		// travel to: (5*30.48, (10-d1)*(30.48-7))
 		
 		
