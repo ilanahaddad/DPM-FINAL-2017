@@ -53,6 +53,7 @@ public class Localization {
 		double angleA, angleB;
 		// rotate the robot until it sees no wall
 		while(wallDetected()){ //while robot sees a wall:
+			
 			//rotate until wallDetected is false --> until it sees no wall
 			turnClockwise(); //clockwise rotation
 		}
@@ -135,7 +136,7 @@ public class Localization {
 				moving = false;
 			}
 		}
-		Sound.beep();
+		
 		
 		//After seeing line, move forward 5
 		leftMotor.rotate(convertDistance(WHEEL_RADIUS,5), true);
@@ -196,36 +197,18 @@ public class Localization {
 		//Calculation of the x and t positions considering that we are in the 3rd quadrant (in negative x and y coords):
 		x_pos = (SENSOR_DIST)*Math.cos(Math.toRadians(theta_y/2)); 
 		y_pos = (SENSOR_DIST)*Math.cos(Math.toRadians(theta_x/2));
-		Sound.buzz();
-		
 		
 		deltaTheta = 90 + (theta_y/2) - (YTheta_Plus - 180);
-	
 		
 		odo.setX(x_pos);
 		odo.setY(y_pos);
 		
 		/*odo.setAng(odo.getAng()+deltaTheta); is original code*/
 		odo.setAng(odo.getAng()+deltaTheta-7);
-		
-		
-		//this.odo.setPosition(new double[] {x_pos,y_pos, deltaTheta+odo.getAng()},new boolean[] {true,true,false});
-		Sound.buzz();
-		
-		
-		
+				
 		// When done, travel to (0,0) and turn to 0 degrees:
-		//this doesn't work, fix it:
 		nav.travelTo(0, 0); 
-		Sound.buzz();
-		
 		nav.turnToSmart(0);
-
-		
-		
-		
-		 
-
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);

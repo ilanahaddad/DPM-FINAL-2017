@@ -23,6 +23,10 @@ public class Forward {
 	private int disp_x; //ball dispenser position x
 	private int disp_y; //ball dispenser position y
 	private String omega; //ball dispenser orientation 
+	private final double TILE_LENGTH = 30.48;
+	private final int CENTER_X_COORD = 5; //x coordinate of center of field we will shoot from
+	private final double ROBOT_FRONT_TOCENTER_DIST = 7; //distance from front of robot to center of rotation
+	private final int FIELD_DIST = 12;
 
 	// Left motor connected to output A
 	// Right motor connected to output D
@@ -60,15 +64,17 @@ public class Forward {
 	
 	public void startFWD() {
 		//already localized
-		//step 1 = travel to ball dispenser at (disp_x,disp_y) 
-		//			(while avoiding obstacles)!!
-		//step 2 = retrieve ball (make robot wait there for 15 seconds maybe
-		//step 3 = travel to shooting zone (under fwdLinePosition)
-		//step 4 = shoot ball 
+		//DEMO:
+		//step 1 = travel to shooting zone (under fwdLinePosition)
+		//step 2 = shoot ball 
+		
+		//travel to shooting zone
+		navigation.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-2-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
+		// travel to: (5*30.48, (10-d1)*(30.48-7))
 		
 		
-		//travel to ball dispenser
-		navigation.travelTo(disp_x,disp_y);
+		
+//		navigation.travelTo(disp_x,disp_y); //travel to ball dispenser
 		
 		
 	}

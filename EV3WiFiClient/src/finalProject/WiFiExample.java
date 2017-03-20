@@ -82,7 +82,7 @@ public class WiFiExample {
 	 * 
 	 * 2. TEAM_NUMBER: your project team number
 	 */
-	private static final String SERVER_IP = "192.168.2.22";
+	private static final String SERVER_IP = "192.168.2.19";
 	private static final int TEAM_NUMBER = 3;
 
 	// Enable/disable printing of debug info from the WiFi class
@@ -131,7 +131,7 @@ public class WiFiExample {
 
 			int w1 = ((Long) data.get("w1")).intValue();
 			int w2 = ((Long) data.get("w2")).intValue();
-//			System.out.println("Defender zone dimmensions (w1,w2): (" + w1 + ", " + w2 +")");
+//			System.out.println("Defender zone dimensions (w1,w2): (" + w1 + ", " + w2 +")");
 
 			int d1 = ((Long) data.get("d1")).intValue();
 //			System.out.println("Forward line position d1: " + d1);
@@ -188,20 +188,18 @@ public class WiFiExample {
 				odometer.start();
 				
 //				odometryDisplay.start();
-				
+				Sound.beep();
 				lsl.doLocalization(fwdCorner);
+				Sound.beep();
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
 				t.drawString(Double.toString(odometer.theta), 0, 3);
 				t.drawString(Double.toString(finalProject.Localization.YTheta_Plus), 0, 4);
 				t.drawString(Double.toString(finalProject.Localization.YTheta_Minus), 0, 5);
 				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
 				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
-				
-				//travel to ball dispencer
-				navigation.start();
 
-				//Forward forward = new Forward(fwdCorner, d1, w1, w2, bx, by, orientation);
-				//forward.startFWD();
+				Forward forward = new Forward(fwdCorner, d1, w1, w2, bx, by, orientation);
+				forward.startFWD();
 			}
 			if(defTeam == 3){//play defense:
 				lsl.doLocalization(defCorner);
