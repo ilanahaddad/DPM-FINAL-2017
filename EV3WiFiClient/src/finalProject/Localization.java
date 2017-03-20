@@ -27,7 +27,8 @@ public class Localization {
 	public static double XTheta_Plus = 0;
 	public static double XTheta_Minus = 0;
 	public static double deltaTheta = 0;
-
+	public static double angleA, angleB;
+	
 	private int line_count = 0; //Used to count the amount of gridlines the sensor has detected
 	static final double correction = 18;
 	boolean moving = true;
@@ -50,7 +51,6 @@ public class Localization {
 	public void doLocalization(int fwdCorner) {
 
 		double [] pos = new double [3];
-		double angleA, angleB;
 		// rotate the robot until it sees no wall
 		while(wallDetected()){ //while robot sees a wall:
 			
@@ -137,19 +137,15 @@ public class Localization {
 			}
 		}
 		
-		
 		//After seeing line, move forward 5
-		leftMotor.rotate(convertDistance(WHEEL_RADIUS,5), true);
-		rightMotor.rotate(convertDistance(WHEEL_RADIUS,5), false);
+		leftMotor.rotate(convertDistance(WHEEL_RADIUS,7), true);
+		rightMotor.rotate(convertDistance(WHEEL_RADIUS,7), false);
 		odo.setAng(0);
 		//Set robot to rotate through 360 degrees clockwise:
 		leftMotor.setSpeed(ROTATION_SPEED); 	
 		rightMotor.setSpeed(ROTATION_SPEED); 
 		leftMotor.rotate(convertAngle(WHEEL_RADIUS, TRACK, 360), true);
 		rightMotor.rotate(-convertAngle(WHEEL_RADIUS, TRACK, 360), true);
-		
-		
-		
 		
 		//While rotating, get LS data:
 		while(line_count < 4){

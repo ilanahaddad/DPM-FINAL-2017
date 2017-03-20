@@ -1,5 +1,6 @@
 package finalProject;
 
+import lejos.hardware.Sound;
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.Port;
@@ -26,7 +27,8 @@ public class Forward {
 	private final double TILE_LENGTH = 30.48;
 	private final int CENTER_X_COORD = 5; //x coordinate of center of field we will shoot from
 	private final double ROBOT_FRONT_TOCENTER_DIST = 7; //distance from front of robot to center of rotation
-	private final int FIELD_DIST = 12;
+	private final int FIELD_DIST = 8; //12
+	private final int OUTER_TILES = 2;
 
 	// Left motor connected to output A
 	// Right motor connected to output D
@@ -34,20 +36,11 @@ public class Forward {
 	public static final EV3LargeRegulatedMotor leftMotor = WiFiExample.leftMotor;
 	public static final EV3LargeRegulatedMotor rightMotor = WiFiExample.rightMotor;
 //	public static final EV3LargeRegulatedMotor launcherMotor = WiFiExample.launcherMotor;;
-	private static final Port usPort = LocalEV3.get().getPort("S1");
+
 
 	public static Navigation nav;
 //	public static ballLauncher launch =  WiFiExample.launch;
-	
-	//Setup ultrasonic sensor
-	// 1. Create a port object attached to a physical port (done above)
-	// 2. Create a sensor instance and attach to port
-	// 3. Create a sample provider instance for the above and initialize operating mode
-	// 4. Create a buffer for the sensor data
-	@SuppressWarnings("resource")							    	// Because we don't bother to close this resource
-	SensorModes usSensor = new EV3UltrasonicSensor(usPort);
-	SampleProvider usValue = usSensor.getMode("Distance");			// colorValue provides samples from this instance
-	float[] usData = new float[usValue.sampleSize()];				// colorData is the buffer in which data are returned
+
 	
 		
 	public Forward(Navigation navigation, int corner, int d1, int w1, int w2, int bx, int by, String omega) {
@@ -68,7 +61,9 @@ public class Forward {
 		//step 2 = shoot ball 
 		
 		//travel to shooting zone
-		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-2-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
+		Sound.beepSequenceUp();
+		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-OUTER_TILES-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
+		nav.turnToSmart(0); //faceTarget
 		// travel to: (5*30.48, (10-d1)*(30.48-7))
 		
 		
