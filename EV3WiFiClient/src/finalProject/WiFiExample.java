@@ -8,7 +8,7 @@ import finalProject.Defense;
 import finalProject.Forward;
 import finalProject.Navigation;
 import finalProject.Odometer;
-import finalProject.ballLauncher;
+import finalProject.Launcher;
 import finalProject.UltrasonicPoller;
 
 import wifi.WifiConnection;
@@ -51,7 +51,7 @@ public class WiFiExample {
 	// Ball Launcher Motor connected to output B
 	public static final EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("A"));
 	public static final EV3LargeRegulatedMotor rightMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("D"));
-	//	public static final EV3LargeRegulatedMotor launcherMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("B"));
+	public static final EV3LargeRegulatedMotor launcherMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("B"));
 	private static final Port colorPort = LocalEV3.get().getPort("S2");	
 	private static final Port usPort = LocalEV3.get().getPort("S1");
 
@@ -189,7 +189,9 @@ public class WiFiExample {
 				odometer.start();
 				
 //				odometryDisplay.start();
-				Sound.beep();
+				Launcher.Enter_Launch_Position(); //PULLS ARM DOWN
+				Button.waitForAnyPress();
+				Sound.beep(); //this beep notifies TA he can place the ball 
 				lsl.doLocalization(fwdCorner);
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
 				t.drawString(Double.toString(odometer.theta), 0, 3);

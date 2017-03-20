@@ -62,13 +62,11 @@ public class Forward {
 		
 		//travel to shooting zone
 		Sound.beepSequenceUp();
-		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, (FIELD_DIST-OUTER_TILES-fwdLinePosition)*(TILE_LENGTH-ROBOT_FRONT_TOCENTER_DIST));
+		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
 		nav.turnToSmart(0); //faceTarget
+		Launcher.Fire(fwdLinePosition);
+		
 		// travel to: (5*30.48, (10-d1)*(30.48-7))
-		
-		
-		
-//		navigation.travelTo(disp_x,disp_y); //travel to ball dispenser
 		
 		
 	}
