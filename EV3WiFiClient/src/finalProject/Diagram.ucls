@@ -3,7 +3,7 @@
   realizations="false" associations="false" dependencies="false" nesting-relationships="false" router="FAN">  
   <class id="1" language="java" name="finalProject.Navigation" project="EV3WiFiClient" 
     file="/EV3WiFiClient/src/finalProject/Navigation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="994" y="1033"/>    
+    <position height="-1" width="-1" x="1068" y="1043"/>    
     <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="finalProject.Odometer" project="EV3WiFiClient" 
     file="/EV3WiFiClient/src/finalProject/Odometer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="570" width="307" x="1191" y="741"/>    
+    <position height="570" width="307" x="603" y="1025"/>    
     <display autosize="false" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -55,107 +55,150 @@
       <operations public="true" package="true" protected="true" private="true" static="false"/>    
     </display>  
   </class>  
-  <association id="7">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="8" name="nav">        
-        <position height="0" width="0" x="378" y="98"/>      
+  <class id="7" language="java" name="finalProject.Launcher" project="EV3WiFiClient" 
+    file="/EV3WiFiClient/src/finalProject/Launcher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="302" y="316"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="finalProject.OdometryDisplay" project="EV3WiFiClient" 
+    file="/EV3WiFiClient/src/finalProject/OdometryDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="428" y="1122"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <association id="9">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="10" name="odometer">        
+        <position height="19" width="63" x="923" y="1233"/>      
       </attribute>      
-      <multiplicity id="9" minimum="0" maximum="1">        
-        <position height="0" width="0" x="378" y="98"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="10">    
-    <bendpoint x="226" y="995"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="11" name="odo">        
-        <position height="0" width="0" x="1028" y="-820"/>      
-      </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1028" y="-820"/>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1712" y="-2520"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="4"/>    
+  <association id="12">    
+    <bendpoint x="1193" y="395"/>    
+    <bendpoint x="1194" y="1278"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="13" name="odometer">        
+        <position height="0" width="0" x="1712" y="-2520"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1712" y="-2520"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="16" name="odometer"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="14">    
-    <bendpoint x="1193" y="395"/>    
-    <bendpoint x="1193" y="995"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="15" name="odometer">        
-        <position height="0" width="0" x="2300" y="-2804"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="0" width="0" x="2300" y="-2804"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="18" name="odometer">        
-        <position height="0" width="0" x="2300" y="-2804"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
-        <position height="0" width="0" x="2300" y="-2804"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="20">    
-    <bendpoint x="633" y="995"/>    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="21" name="odometer">        
-        <position height="0" width="0" x="1028" y="-820"/>      
+        <position height="0" width="0" x="440" y="-536"/>      
       </attribute>      
       <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1028" y="-820"/>      
+        <position height="0" width="0" x="440" y="-536"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="23">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="24" name="navigation">        
-        <position height="0" width="0" x="378" y="98"/>      
+    <bendpoint x="376" y="952"/>    
+    <bendpoint x="530" y="1040"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="24" name="odo">        
+        <position height="0" width="0" x="440" y="-536"/>      
       </attribute>      
       <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="378" y="98"/>      
+        <position height="0" width="0" x="440" y="-536"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="26">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="27">    
-    <bendpoint x="796" y="395"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="28" name="navigation">        
-        <position height="0" width="0" x="1440" y="878"/>      
+  <dependency id="27">    
+    <bendpoint x="770" y="966"/>    
+    <bendpoint x="590" y="1010"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="28">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="29" name="navigation">        
+        <position height="0" width="0" x="452" y="108"/>      
       </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1440" y="878"/>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="452" y="108"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
+  <association id="32">    
+    <bendpoint x="796" y="395"/>    
+    <bendpoint x="796" y="758"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="33" name="navigation">        
+        <position height="0" width="0" x="1514" y="888"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1514" y="888"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="35">    
+    <bendpoint x="590" y="386"/>    
+    <bendpoint x="762" y="392"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="36">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="37" name="nav">        
+        <position height="0" width="0" x="452" y="108"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="452" y="108"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
