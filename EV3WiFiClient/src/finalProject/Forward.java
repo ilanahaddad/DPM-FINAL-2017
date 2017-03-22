@@ -1,15 +1,7 @@
 package finalProject;
 
 import lejos.hardware.Sound;
-import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.Port;
-import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.hardware.sensor.EV3UltrasonicSensor;
-import lejos.hardware.sensor.SensorModes;
-import lejos.robotics.SampleProvider;
-
-
 
 /**
  * @author ilanahaddad
@@ -37,12 +29,8 @@ public class Forward {
 	public static final EV3LargeRegulatedMotor rightMotor = WiFiExample.rightMotor;
 //	public static final EV3LargeRegulatedMotor launcherMotor = WiFiExample.launcherMotor;;
 
-
 	public static Navigation nav;
-//	public static ballLauncher launch =  WiFiExample.launch;
 
-	
-		
 	public Forward(Navigation navigation, int corner, int d1, int w1, int w2, int bx, int by, String omega) {
 		this.corner = corner;
 		this.fwdLinePosition = d1;
@@ -62,13 +50,13 @@ public class Forward {
 		
 		//travel to shooting zone
 		Sound.beepSequenceUp();
-		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
+//		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
+		nav.travelTo(2*TILE_LENGTH, (10*TILE_LENGTH)-5);
+//		nav.travelTo(2*TILE_LENGTH, 0);
 		nav.turnToSmart(0); //faceTarget
 		Launcher.Fire(fwdLinePosition);
 		
 		// travel to: (5*30.48, (10-d1)*(30.48-7))
-		
-		
 	}
 	
 }

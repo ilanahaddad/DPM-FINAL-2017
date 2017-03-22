@@ -82,7 +82,7 @@ public class WiFiExample {
 	 * 
 	 * 2. TEAM_NUMBER: your project team number
 	 */
-	private static final String SERVER_IP = "192.168.2.19";
+	private static final String SERVER_IP = "192.168.2.15";
 	private static final int TEAM_NUMBER = 3;
 
 	// Enable/disable printing of debug info from the WiFi class
@@ -190,15 +190,16 @@ public class WiFiExample {
 				
 //				odometryDisplay.start();
 				Launcher.Enter_Launch_Position(); //PULLS ARM DOWN
-				Button.waitForAnyPress();
+//				Button.waitForAnyPress();
 				Sound.beep(); //this beep notifies TA he can place the ball 
 				lsl.doLocalization(fwdCorner);
+				
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
 				t.drawString(Double.toString(odometer.theta), 0, 3);
-				t.drawString(Double.toString(finalProject.Localization.angleA), 0, 4);
-				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
-				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
-				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
+//				t.drawString(Double.toString(finalProject.Localization.angleA), 0, 4);
+//				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
+//				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
+//				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
 				Forward forward = new Forward(navigation, fwdCorner, d1, w1, w2, bx, by, orientation);
 				forward.startFWD(); 
 			}

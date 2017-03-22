@@ -53,7 +53,9 @@ public class Localization {
 		double [] pos = new double [3];
 		// rotate the robot until it sees no wall
 		while(wallDetected()){ //while robot sees a wall:
-			
+			if(!wallDetected()){
+				
+			}
 			//rotate until wallDetected is false --> until it sees no wall
 			turnClockwise(); //clockwise rotation
 		}
@@ -112,7 +114,7 @@ public class Localization {
 			dTheta = 230 - ((angleA+angleB)/2);
 		}
 		else if(angleA > angleB){
-			dTheta = 230 - ((angleA+angleB)/2);
+			dTheta = 43 - ((angleA+angleB)/2);
 		}
 
 		//dTheta is the angle to be added to the heading reported by odometer:
@@ -125,6 +127,7 @@ public class Localization {
 		nav.turnToSmart(45);
 		Sound.buzz();
 		
+		odo.setAng(45);
 
 		//LIGHT:
 		while(moving){
@@ -204,7 +207,7 @@ public class Localization {
 				
 		// When done, travel to (0,0) and turn to 0 degrees:
 		nav.travelTo(0, 0); 
-		nav.turnToSmart(0);
+//		nav.turnToSmart(0);
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);
