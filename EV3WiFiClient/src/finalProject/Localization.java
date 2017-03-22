@@ -131,8 +131,8 @@ public class Localization {
 
 		//LIGHT:
 		while(moving){
-			leftMotor.rotate(convertDistance(WHEEL_RADIUS, 600), true);
-			rightMotor.rotate(convertDistance(WHEEL_RADIUS, 600), true);
+			leftMotor.rotate(convertDistance(WHEEL_RADIUS, 600)/100, true);
+			rightMotor.rotate(convertDistance(WHEEL_RADIUS, 600)/100, true);
 			this.colorSensor.fetchSample(this.colorData2, 0);
 			int light_val = (int)(this.colorData2[0]*100);
 			if(light_val <= 28){
@@ -141,14 +141,14 @@ public class Localization {
 		}
 		
 		//After seeing line, move forward 5
-		leftMotor.rotate(convertDistance(WHEEL_RADIUS,7), true);
-		rightMotor.rotate(convertDistance(WHEEL_RADIUS,7), false);
+		leftMotor.rotate(convertDistance(WHEEL_RADIUS,7)/100, true);
+		rightMotor.rotate(convertDistance(WHEEL_RADIUS,7)/100, false);
 		odo.setAng(0);
 		//Set robot to rotate through 360 degrees clockwise:
 		leftMotor.setSpeed(ROTATION_SPEED); 	
 		rightMotor.setSpeed(ROTATION_SPEED); 
-		leftMotor.rotate(convertAngle(WHEEL_RADIUS, TRACK, 360), true);
-		rightMotor.rotate(-convertAngle(WHEEL_RADIUS, TRACK, 360), true);
+		leftMotor.rotate(convertAngle(WHEEL_RADIUS, TRACK, 360)/100, true);
+		rightMotor.rotate(-convertAngle(WHEEL_RADIUS, TRACK, 360)/100, true);
 		
 		//While rotating, get LS data:
 		while(line_count < 4){
@@ -207,7 +207,7 @@ public class Localization {
 				
 		// When done, travel to (0,0) and turn to 0 degrees:
 		nav.travelTo(0, 0); 
-//		nav.turnToSmart(0);
+		nav.turnToSmart(90);
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);
@@ -237,7 +237,7 @@ public class Localization {
 	}
 	//convertDistance method: It takes the radius of the wheel and the distance required to travel and calculates the required wheel rotation
 	private static int convertDistance(double radius, double distance) {
-		return (int) ((180.0 * distance) / (Math.PI * radius));
+		return (int) (100*(180.0 * distance) / (Math.PI * radius));
 	}
 	//convertAngle method: This method takes the radius of wheel, width of cart and the angle required to be turned and calculated the required wheel rotation
 	private static int convertAngle(double radius, double width, double angle) {
