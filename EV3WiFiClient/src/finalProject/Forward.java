@@ -25,7 +25,7 @@ public class Forward {
 	private int disp_y; //ball dispenser position y
 	private String omega; //ball dispenser orientation 
 	private final double TILE_LENGTH = 30.48;
-	private final int CENTER_X_COORD = 5; //x coordinate of center of field we will shoot from
+	private final int CENTER_X_COORD = 10; //x coordinate of center of field we will shoot from
 	private final double ROBOT_FRONT_TOCENTER_DIST = 11; //distance from front of robot to center of rotation
 	private final int FIELD_DIST = 8; //12
 	private final int OUTER_TILES = 2;
@@ -61,7 +61,8 @@ public class Forward {
 		//step 2 = shoot ball 
 		
 		//travel to shooting zone
-		
+//		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, 0);
+		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, 0);
 		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
 		nav.turnToSmart(0); //faceTarget
 		Launcher.Fire(4);

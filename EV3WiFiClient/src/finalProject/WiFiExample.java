@@ -82,7 +82,7 @@ public class WiFiExample {
 	 * 
 	 * 2. TEAM_NUMBER: your project team number
 	 */
-	private static final String SERVER_IP = "192.168.2.15";
+	private static final String SERVER_IP = "192.168.2.10";
 	private static final int TEAM_NUMBER = 3;
 
 	// Enable/disable printing of debug info from the WiFi class
@@ -177,7 +177,7 @@ public class WiFiExample {
 					colorData2, leftMotor,rightMotor, usValue, usSensor, usData);
 			final TextLCD t = LocalEV3.get().getTextLCD();
 			t.clear();
-			OdometryDisplay odometryDisplay = new OdometryDisplay(odometer,t);
+//			OdometryDisplay odometryDisplay = new OdometryDisplay(odometer,t);
 			//pass all these values to start the game:
 			if(fwdTeam == 3){ //play forward:
 				System.out.println();
@@ -190,15 +190,15 @@ public class WiFiExample {
 				System.out.println();
 				odometer.start();
 				
-				odometryDisplay.start();
+//				odometryDisplay.start();
 				lsl.doLocalization(fwdCorner);
 				Sound.beep();
 				Launcher.Enter_Launch_Position(); //PULLS ARM DOWN
-				Button.waitForAnyPress();
+//				Button.waitForAnyPress();
 				
-
-				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
-				t.drawString(Double.toString(odometer.theta), 0, 3);
+//
+//				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
+//				t.drawString(Double.toString(odometer.theta), 0, 3);
 //				t.drawString(Double.toString(finalProject.Localization.angleA), 0, 4);
 //				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
 //				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);

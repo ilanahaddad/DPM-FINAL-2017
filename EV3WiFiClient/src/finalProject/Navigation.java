@@ -101,7 +101,7 @@ public class Navigation extends Thread{
 	
 	
 	private static int convertDistance(double radius, double distance) {
-		return (int) ((180.0 * distance) / (Math.PI * radius));
+		return ((int) (100*(180.0 * distance) / (Math.PI * radius)))/100;
 	}
 	private static int convertAngle(double radius, double width, double angle) {
 		return convertDistance(radius, Math.PI * width * angle / 360.0);
