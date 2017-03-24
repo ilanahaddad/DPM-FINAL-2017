@@ -57,14 +57,14 @@ public class Localization {
 			//rotate until wallDetected is false --> until it sees no wall
 			turnClockwise(); //clockwise rotation
 		}
-		Sound.beep();//make sound to indicate we have successfully rotated away from wall
+	//	Sound.beep();//make sound to indicate we have successfully rotated away from wall
 
 		// keep rotating until the robot sees a wall, then latch the angle
 		while(!wallDetected()){ //while robot doesn't see a wall:
 			//rotate until robot sees a wall (until !wallDetected is false)
 			turnClockwise(); //clockwise rotation
 		}
-		Sound.beepSequenceUp(); //make sound to indicate we now see a wall
+	//	Sound.beepSequenceUp(); //make sound to indicate we now see a wall
 
 		if(wallDetected()){//stop motors to give it time to latch angle
 			leftMotor.setSpeed(0); //set speeds to zero for both because stop() doesnt do both motors simultaneously
@@ -83,14 +83,14 @@ public class Localization {
 			//rotate until wallDetected is false --> until it sees no wall
 			turnCounterClockwise();  //switch direction to counterclockwise rotation
 		}
-		Sound.beepSequence();//make sound to indicate we have successfully rotated away from wall
+//		Sound.beepSequence();//make sound to indicate we have successfully rotated away from wall
 
 		// keep rotating until the robot sees a wall, then latch the angle
 		while(!wallDetected()){ //while robot doesn't see a wall:
 			//rotate until robot sees a wall (until !wallDetected is false)
 			turnCounterClockwise();  //counterclockwise rotation
 		}
-		Sound.twoBeeps(); //make sound to indicate we now see a wall
+//		Sound.twoBeeps(); //make sound to indicate we now see a wall
 
 		if(wallDetected()){//stop motors to give it time to latch angle
 			leftMotor.setSpeed(0); //set speeds to zero for both because stop() doesnt do both motors simultaneously
@@ -112,7 +112,7 @@ public class Localization {
 			dTheta = 230 - ((angleA+angleB)/2);
 		}
 		else if(angleA > angleB){
-			dTheta = 230 - ((angleA+angleB)/2);
+			dTheta = 43 - ((angleA+angleB)/2);
 		}
 
 		//dTheta is the angle to be added to the heading reported by odometer:
@@ -122,9 +122,10 @@ public class Localization {
 		boolean[] updates = {false,false,true}; //booleans indicating if x,y,theta are being updated
 		//only theta is being updated so index 2 is true but x and y remain 0
 		odo.setPosition(pos, updates);
-		nav.turnToSmart(45);
-		Sound.buzz();
+		nav.turnToSmart(55);
+//		Sound.buzz();
 		
+		odo.setAng(45);
 
 		//LIGHT:
 		while(moving){

@@ -82,7 +82,7 @@ public class WiFiExample {
 	 * 
 	 * 2. TEAM_NUMBER: your project team number
 	 */
-	private static final String SERVER_IP = "192.168.2.19";
+	private static final String SERVER_IP = "192.168.2.15";
 	private static final int TEAM_NUMBER = 3;
 
 	// Enable/disable printing of debug info from the WiFi class
@@ -93,9 +93,30 @@ public class WiFiExample {
 
 		System.out.println("Running..");
 
+		//Setup color sensor
+		// 1. Create a port object attached to a physical port (done above)
+		// 2. Create a sensor instance and attach to port
+		// 3. Create a sample provider instance for the above and initialize operating mode
+		// 4. Create a buffer for the sensor data
+		@SuppressWarnings("resource")
+		SensorModes colorSensor = new EV3ColorSensor(colorPort);
+		SampleProvider colorValue = colorSensor.getMode("Red");			// colorValue provides samples from this instance
+		float[] colorData = new float[100];			// colorData is the buffer in which data are returned
+		float[] colorData2 = new float[100];
+
+		//Setup ultrasonic sensor
+		// 1. Create a port object attached to a physical port (done above)
+		// 2. Create a sensor instance and attach to port
+		// 3. Create a sample provider instance for the above and initialize operating mode
+		// 4. Create a buffer for the sensor data
+		@SuppressWarnings("resource")							    	// Because we don't bother to close this resource
+		SensorModes usSensor = new EV3UltrasonicSensor(usPort);
+		SampleProvider usValue = usSensor.getMode("Distance");			// colorValue provides samples from this instance
+		float[] usData = new float[usValue.sampleSize()];				// colorData is the buffer in which data are returned
+		
 		// Initialize WifiConnection class
 		WifiConnection conn = new WifiConnection(SERVER_IP, TEAM_NUMBER, ENABLE_DEBUG_WIFI_PRINT);
-
+		Sound.beep();
 		// Connect to server and get the data, catching any errors that might occur
 		try {
 			/*
@@ -150,26 +171,7 @@ public class WiFiExample {
 //				System.out.println("Orientation is not North");
 //			}
 
-			//Setup color sensor
-			// 1. Create a port object attached to a physical port (done above)
-			// 2. Create a sensor instance and attach to port
-			// 3. Create a sample provider instance for the above and initialize operating mode
-			// 4. Create a buffer for the sensor data
-			@SuppressWarnings("resource")
-			SensorModes colorSensor = new EV3ColorSensor(colorPort);
-			SampleProvider colorValue = colorSensor.getMode("Red");			// colorValue provides samples from this instance
-			float[] colorData = new float[100];			// colorData is the buffer in which data are returned
-			float[] colorData2 = new float[100];
-
-			//Setup ultrasonic sensor
-			// 1. Create a port object attached to a physical port (done above)
-			// 2. Create a sensor instance and attach to port
-			// 3. Create a sample provider instance for the above and initialize operating mode
-			// 4. Create a buffer for the sensor data
-			@SuppressWarnings("resource")							    	// Because we don't bother to close this resource
-			SensorModes usSensor = new EV3UltrasonicSensor(usPort);
-			SampleProvider usValue = usSensor.getMode("Distance");			// colorValue provides samples from this instance
-			float[] usData = new float[usValue.sampleSize()];				// colorData is the buffer in which data are returned
+			
 
 			Localization lsl = new Localization(odometer,navigation, colorValue, colorData, 
 					colorData2, leftMotor,rightMotor, usValue, usSensor, usData);
@@ -188,17 +190,19 @@ public class WiFiExample {
 				System.out.println();
 				odometer.start();
 				
-//				odometryDisplay.start();
+				odometryDisplay.start();
+				lsl.doLocalization(fwdCorner);
+				Sound.beep();
 				Launcher.Enter_Launch_Position(); //PULLS ARM DOWN
 				Button.waitForAnyPress();
-				Sound.beep(); //this beep notifies TA he can place the ball 
-				lsl.doLocalization(fwdCorner);
+				
+
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
 				t.drawString(Double.toString(odometer.theta), 0, 3);
-				t.drawString(Double.toString(finalProject.Localization.angleA), 0, 4);
-				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
-				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
-				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
+//				t.drawString(Double.toString(finalProject.Localization.angleA), 0, 4);
+//				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
+//				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
+//				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
 				Forward forward = new Forward(navigation, fwdCorner, d1, w1, w2, bx, by, orientation);
 				forward.startFWD(); 
 			}
