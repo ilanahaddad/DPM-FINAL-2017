@@ -50,8 +50,8 @@ public class Forward {
 		
 		//travel to shooting zone
 		Sound.beepSequenceUp();
-//		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
-		nav.travelTo(2*TILE_LENGTH, (10*TILE_LENGTH)-5);
+		nav.travelTo(CENTER_X_COORD*TILE_LENGTH, ((FIELD_DIST-OUTER_TILES-fwdLinePosition)*TILE_LENGTH)-ROBOT_FRONT_TOCENTER_DIST);
+//		nav.travelTo(2*TILE_LENGTH, (10*TILE_LENGTH)-5);
 //		nav.travelTo(2*TILE_LENGTH, 0);
 		nav.turnToSmart(0); //faceTarget
 		Launcher.Fire(fwdLinePosition);

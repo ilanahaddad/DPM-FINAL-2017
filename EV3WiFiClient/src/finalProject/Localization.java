@@ -111,10 +111,10 @@ public class Localization {
 
 		//use formula from tutorial to determine delta theta:
 		if(angleA < angleB){
-			dTheta = 230 - ((angleA+angleB)/2);
+			dTheta = 225 - ((angleA+angleB)/2);
 		}
 		else if(angleA > angleB){
-			dTheta = 43 - ((angleA+angleB)/2);
+			dTheta = 45 - ((angleA+angleB)/2);
 		}
 
 		//dTheta is the angle to be added to the heading reported by odometer:
@@ -207,7 +207,7 @@ public class Localization {
 				
 		// When done, travel to (0,0) and turn to 0 degrees:
 		nav.travelTo(0, 0); 
-		nav.turnToSmart(90);
+//		nav.turnToSmart(0);
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);
