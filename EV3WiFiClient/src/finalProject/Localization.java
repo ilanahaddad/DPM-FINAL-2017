@@ -71,8 +71,8 @@ public class Localization {
 		if(wallDetected()){//stop motors to give it time to latch angle
 			leftMotor.setSpeed(0); //set speeds to zero for both because stop() doesnt do both motors simultaneously
 			rightMotor.setSpeed(0);
-			leftMotor.forward();
-			rightMotor.forward();
+//			leftMotor.forward();
+//			rightMotor.forward();
 			leftMotor.stop();
 			rightMotor.stop();
 		}
@@ -97,8 +97,8 @@ public class Localization {
 		if(wallDetected()){//stop motors to give it time to latch angle
 			leftMotor.setSpeed(0); //set speeds to zero for both because stop() doesnt do both motors simultaneously
 			rightMotor.setSpeed(0);
-			leftMotor.forward();
-			rightMotor.forward();
+//			leftMotor.forward();
+//			rightMotor.forward();
 			leftMotor.stop();
 			rightMotor.stop();
 		}
@@ -124,7 +124,7 @@ public class Localization {
 		boolean[] updates = {false,false,true}; //booleans indicating if x,y,theta are being updated
 		//only theta is being updated so index 2 is true but x and y remain 0
 		odo.setPosition(pos, updates);
-		nav.turnToSmart(45);
+		nav.turnToSmart(50);
 		Sound.buzz();
 		
 		odo.setAng(45);
@@ -207,7 +207,7 @@ public class Localization {
 				
 		// When done, travel to (0,0) and turn to 0 degrees:
 		nav.travelTo(0, 0); 
-//		nav.turnToSmart(0);
+		nav.turnToSmart(0);
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);
