@@ -76,8 +76,8 @@ public class Navigation extends Thread{
 		leftMotor.setSpeed(FORWARD_SPEED);
 		rightMotor.setSpeed(FORWARD_SPEED);
 						
-		leftMotor.rotate(convertDistance(wheel_radius, distance)/100, true);
-		rightMotor.rotate(convertDistance(wheel_radius, distance)/100, false);
+		leftMotor.rotate(convertDistance(wheel_radius, distance), true);
+		rightMotor.rotate(convertDistance(wheel_radius, distance), false);
 	}
 	
 	public void turnTo(double theta){
@@ -90,8 +90,8 @@ public class Navigation extends Thread{
 		rightMotor.setAcceleration(2000);
 		
 		
-		leftMotor.rotate(convertAngle(wheel_radius, width, theta)/100, true);
-		rightMotor.rotate(-convertAngle(wheel_radius, width, theta)/100, false);
+		leftMotor.rotate(convertAngle(wheel_radius, width, theta), true);
+		rightMotor.rotate(-convertAngle(wheel_radius, width, theta), false);
 		
 		//returns default acceleration values after turn
 		leftMotor.setAcceleration(6000);
@@ -101,7 +101,7 @@ public class Navigation extends Thread{
 	
 	
 	private static int convertDistance(double radius, double distance) {
-		return (int) (100*(180.0 * distance) / (Math.PI * radius));
+		return (int) ((180.0 * distance) / (Math.PI * radius));
 	}
 	private static int convertAngle(double radius, double width, double angle) {
 		return convertDistance(radius, Math.PI * width * angle / 360.0);
