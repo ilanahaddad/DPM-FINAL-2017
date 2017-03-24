@@ -188,7 +188,7 @@ public class WiFiExample {
 				System.out.println();
 				odometer.start();
 				
-//				odometryDisplay.start();
+				odometryDisplay.start();
 
 				lsl.doLocalization(fwdCorner);
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);

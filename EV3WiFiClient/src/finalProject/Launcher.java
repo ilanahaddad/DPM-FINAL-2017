@@ -56,10 +56,10 @@ public class Launcher {
 			launch_speed = 400;
 		}
 		else if(dist == 4){
-			launch_speed = 350;
+			launch_speed = 320;
 		}
 		else if(dist == 3){
-			launch_speed = 310;
+			launch_speed = 290;
 		}
 //		else{	
 //			launch_speed = 2500*(dist) - 12050; 
