@@ -28,6 +28,7 @@ public class Localization {
 	public static double XTheta_Minus = 0;
 	public static double deltaTheta = 0;
 	public static double angleA, angleB;
+	public static double TILE_LENGTH=30.48;
 	
 	private int line_count = 0; //Used to count the amount of gridlines the sensor has detected
 	static final double correction = 18;
@@ -46,6 +47,13 @@ public class Localization {
 		this.rightMotor = rightMotor;
 		this.nav = nav;
 
+	}
+	public void startTest(){
+		doLocalization(1);
+		nav.travelTo(1*TILE_LENGTH, (5*TILE_LENGTH));
+		
+		LightLocalization();
+		nav.travelTo(2*TILE_LENGTH, (10*TILE_LENGTH)-5);
 	}
 
 	public void doLocalization(int fwdCorner) {
@@ -207,7 +215,74 @@ public class Localization {
 				
 		// When done, travel to (0,0) and turn to 0 degrees:
 		nav.travelTo(0, 0); 
-		nav.turnToSmart(90);
+		nav.turnToSmart(0);
+	}
+	
+	public void LightLocalization(){
+		nav.turnToSmart(45);
+		
+		odo.setAng(0);
+		//Set robot to rotate through 360 degrees clockwise:
+		leftMotor.setSpeed(ROTATION_SPEED); 	
+		rightMotor.setSpeed(ROTATION_SPEED); 
+		leftMotor.rotate(convertAngle(WHEEL_RADIUS, TRACK, 360)/100, true);
+		rightMotor.rotate(-convertAngle(WHEEL_RADIUS, TRACK, 360)/100, true);
+		
+		//While rotating, get LS data:
+		while(line_count < 4){
+			// Acquire Color Data from sensor, store it in the array at the position
+			// of the line it is currently at.
+			this.colorSensor.fetchSample(this.colorData, line_count);
+			int light_val = (int)((this.colorData[line_count])*100);
+
+			// Progress through the lines as they are detected and record the angles.
+			// As the cart starts at zero from the US localization, it is not necessary
+			// for us to consider the angle looping around: Our angles will always
+			// be within [0, 360].
+		
+			if(line_count == 0 && light_val <= 32){
+				XTheta_Plus = odo.getAng();
+				line_count++; //Increment the line counter
+				Sound.beep();
+			}
+			else if(line_count == 1 && light_val <= 32){
+				YTheta_Minus = odo.getAng();
+				line_count++;
+				Sound.beep();
+			}
+			else if(line_count == 2 && light_val <= 32){
+				XTheta_Minus = odo.getAng();
+				line_count++;
+				Sound.beep();
+			}			
+			else if(line_count == 3 && light_val <= 32){
+				YTheta_Plus = odo.getAng();
+				line_count++;
+				Sound.beep();
+			}
+		}
+
+		// Do trigonometry to compute (x, y) position and fix angle, as specified
+		// in the tutorial slides
+		double x_pos = 0, y_pos = 0; 
+		double theta_y = 0, theta_x = 0;
+
+		//Calculation of total angle subtending the axes
+		theta_y = YTheta_Plus-YTheta_Minus;
+		theta_x = XTheta_Minus - XTheta_Plus;
+
+		//Calculation of the x and t positions considering that we are in the 3rd quadrant (in negative x and y coords):
+		x_pos = (SENSOR_DIST)*Math.cos(Math.toRadians(theta_y/2)); 
+		y_pos = (SENSOR_DIST)*Math.cos(Math.toRadians(theta_x/2));
+		
+		deltaTheta = 90 + (theta_y/2) - (YTheta_Plus - 180);
+		
+		odo.setX(x_pos);
+		odo.setY(y_pos);
+		
+		/*odo.setAng(odo.getAng()+deltaTheta); is original code*/
+		odo.setAng(odo.getAng()+deltaTheta-7);
+		
 	}
 	public void turnClockwise(){//robot turns clockwise 
 		leftMotor.setSpeed(225);

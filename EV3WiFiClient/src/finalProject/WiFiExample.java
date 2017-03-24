@@ -192,7 +192,7 @@ public class WiFiExample {
 				Launcher.Enter_Launch_Position(); //PULLS ARM DOWN
 //				Button.waitForAnyPress();
 				Sound.beep(); //this beep notifies TA he can place the ball 
-				lsl.doLocalization(fwdCorner);
+				lsl.startTest();
 				
 				t.drawString(Double.toString(finalProject.Localization.deltaTheta), 0, 2);
 				t.drawString(Double.toString(odometer.theta), 0, 3);
@@ -200,8 +200,8 @@ public class WiFiExample {
 //				t.drawString(Double.toString(finalProject.Localization.angleB), 0, 5);
 //				t.drawString(Double.toString(finalProject.Localization.XTheta_Plus), 0, 6);
 //				t.drawString(Double.toString(finalProject.Localization.XTheta_Minus), 0, 7);
-				Forward forward = new Forward(navigation, fwdCorner, d1, w1, w2, bx, by, orientation);
-				forward.startFWD(); 
+//				Forward forward = new Forward(navigation, fwdCorner, d1, w1, w2, bx, by, orientation);
+//				forward.startFWD(); 
 			}
 			if(defTeam == 3){//play defense:
 				lsl.doLocalization(defCorner);
