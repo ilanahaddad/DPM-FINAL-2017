@@ -12,3 +12,4 @@ Hardware design lead: Tristan Bouchard
 Team design manager: Tyrone Wong
 
 Objective: Develop a program that makes an EV3 mindstorm bot navigate and localize itself to play a hybdrid game of soccer and basketball.
+hi
